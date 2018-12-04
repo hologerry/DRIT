@@ -30,6 +30,7 @@ test/data/legacy_modules.t7
 test/data/gpu_tensors.pt
 test/htmlcov
 test/.coverage
+datasets/*
 */*.pyc
 */**/*.pyc
 */**/**/*.pyc

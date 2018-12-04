@@ -39,7 +39,8 @@ class DRIT(nn.Module):
         self.enc_c = networks.E_content(opts.input_dim_a, opts.input_dim_b)
         if self.concat:
             self.enc_a = networks.E_attr_concat(opts.input_dim_a, opts.input_dim_b, self.nz,
-                                                norm_layer=None, nl_layer=networks.get_non_linearity(layer_type='lrelu'))
+                                                norm_layer=None,
+                                                nl_layer=networks.get_non_linearity(layer_type='lrelu'))
         else:
             self.enc_a = networks.E_attr(
                 opts.input_dim_a, opts.input_dim_b, self.nz)
@@ -212,12 +213,16 @@ class DRIT(nn.Module):
             self.z_content_recon_b, self.z_attr_recon_b)
 
         # for display
-        self.image_display = torch.cat((self.real_A_encoded[0:1].detach().cpu(), self.fake_B_encoded[0:1].detach().cpu(),
-                                        self.fake_B_random[0:1].detach().cpu(), self.fake_AA_encoded[0:1].detach(
-        ).cpu(), self.fake_A_recon[0:1].detach().cpu(),
-            self.real_B_encoded[0:1].detach().cpu(
-        ), self.fake_A_encoded[0:1].detach().cpu(),
-            self.fake_A_random[0:1].detach().cpu(), self.fake_BB_encoded[0:1].detach().cpu(), self.fake_B_recon[0:1].detach().cpu()), dim=0)
+        self.image_display = torch.cat((self.real_A_encoded[0:1].detach().cpu(),
+                                        self.fake_B_encoded[0:1].detach().cpu(),
+                                        self.fake_B_random[0:1].detach().cpu(),
+                                        self.fake_AA_encoded[0:1].detach().cpu(),
+                                        self.fake_A_recon[0:1].detach().cpu(),
+                                        self.real_B_encoded[0:1].detach().cpu(),
+                                        self.fake_A_encoded[0:1].detach().cpu(),
+                                        self.fake_A_random[0:1].detach().cpu(),
+                                        self.fake_BB_encoded[0:1].detach().cpu(),
+                                        self.fake_B_recon[0:1].detach().cpu()), dim=0)
 
         # for latent regression
         if self.concat:
